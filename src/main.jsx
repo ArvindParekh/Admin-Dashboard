@@ -4,6 +4,7 @@ import App from "./App.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import User from "./routes/user.jsx";
+import { NewUser } from "./routes/new-user.jsx";
 
 const router = createBrowserRouter([
    {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
    {
       path:"users/:userId",
       element: <User />
+   },
+   {
+      path: "add-user",
+      element: <NewUser />
    }
 ]);
 
