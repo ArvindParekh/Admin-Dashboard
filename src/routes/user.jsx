@@ -6,14 +6,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function User() {
-   // const contact = {
-   //    first: "Your",
-   //    last: "Name",
-   //    avatar: "https://placekitten.com/g/200/200",
-   //    twitter: "your_handle",
-   //    notes: "Some notes",
-   //    favorite: true,
-   // };
 
    const [contacts, setContacts] = useState([]);
    const { userId } = useParams();
@@ -67,7 +59,18 @@ export default function User() {
                         </p>
                      )}
 
-                     {contact.notes && <p>{contact.notes}</p>}
+                     {contact.linkedin && (
+                        <p>
+                           <a
+                              target='_blank'
+                              href={`https://linkedin.com/in/${contact.linkedin}`}
+                           >
+                              {contact.linkedin}
+                           </a>
+                        </p>
+                     )}
+
+                     {contact.description && <p>{contact.description}</p>}
 
                      <div>
                         <Form action='edit'>
