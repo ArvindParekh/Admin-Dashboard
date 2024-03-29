@@ -8,33 +8,39 @@ import { useState } from "react";
 
 function App() {
    const [users, setUsers] = useState([]);
-  //  const users = [
-  //     {
-  //        first: "Your",
-  //        last: "Name",
-  //        avatar: "https://placekitten.com/g/200/200",
-  //        twitter: "your_handle",
-  //        notes: "Some notes",
-  //        favorite: true,
-  //     },
-  //     {
-  //        first: "Arvind",
-  //        last: "Parekh",
-  //        avatar: "https://placekitten.com/g/200/200",
-  //        twitter: "Arvindparekh_21",
-  //        notes: "Some notes",
-  //        favorite: true,
-  //     },
-  //  ];
+   //  const users = [
+   //     {
+   //        first: "Your",
+   //        last: "Name",
+   //        avatar: "https://placekitten.com/g/200/200",
+   //        twitter: "your_handle",
+   //        notes: "Some notes",
+   //        favorite: true,
+   //     },
+   //     {
+   //        first: "Arvind",
+   //        last: "Parekh",
+   //        avatar: "https://placekitten.com/g/200/200",
+   //        twitter: "Arvindparekh_21",
+   //        notes: "Some notes",
+   //        favorite: true,
+   //     },
+   //  ];
 
    useEffect(() => {
       async function getUsers() {
          try {
             const querySnapshot = await getDocs(collection(db, "users"));
             querySnapshot.forEach((doc) => {
-               console.log(doc.data());
+               console.log(doc.id);
                setUsers((prev) => {
-                  return [...prev, doc.data()];
+                  return [
+                     ...prev,
+                     {
+                        data: doc.data(),
+                        id: doc.id,
+                     },
+                  ];
                });
             });
          } catch (e) {
@@ -50,7 +56,10 @@ function App() {
          <section className='w-[70vw] h-[70vh] border rounded-md shadow-sm flex flex-col items-center justify-evenly'>
             <aside className='border w-[60vw] h-[8vh] rounded-lg flex items-center justify-between'>
                <input className='border' placeholder='Search'></input>
-               <Link to='/add-user' className='p-2 bg-black rounded-lg text-white'>
+               <Link
+                  to='/add-user'
+                  className='p-2 bg-black rounded-lg text-white'
+               >
                   Add New User
                </Link>
             </aside>
@@ -60,11 +69,11 @@ function App() {
                      return (
                         <div key={index} className='flex border'>
                            <div className='flex w-full items-center justify-between'>
-                              <Link to={`/users/${index}`}>
+                              <Link to={`/users/${user.id}`}>
                                  <h1>
-                                    {user.first || user.last ? (
+                                    {user.data.first || user.data.last ? (
                                        <>
-                                          {user.first} {user.last}
+                                          {user.data.first} {user.data.last}
                                        </>
                                     ) : (
                                        <i>No Name</i>
