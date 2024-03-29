@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import XIcon from "@mui/icons-material/X";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import { Link } from "react-router-dom";
 
 export default function User() {
    const [contacts, setContacts] = useState([]);
@@ -29,7 +30,7 @@ export default function User() {
    return (
       <div
          id='contact'
-         className='min-h-screen bg-gray-100 flex items-center justify-center'
+         className='min-h-screen bg-gray-100 flex flex-col items-center justify-center'
       >
          {contacts.map((contact, index) => {
             return (
@@ -107,6 +108,11 @@ export default function User() {
                </div>
             );
          })}
+         <div className="mt-6">
+            <Link to="/" className=" text-blue-500 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+               Back
+            </Link>
+         </div>
       </div>
    );
 }
