@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { Form, useParams } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore/lite";
+import { deleteDoc, doc, getDoc } from "firebase/firestore/lite";
 import { db } from "../services/firebase";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function User() {
    // const contact = {
@@ -15,8 +16,8 @@ export default function User() {
    // };
 
    const [contacts, setContacts] = useState([]);
-
    const { userId } = useParams();
+   let navigate = useNavigate();
 
    useEffect(() => {
       const fetchUser = async () => {
@@ -29,6 +30,11 @@ export default function User() {
 
       fetchUser();
    }, [userId]);
+
+   async function handleDelete() {
+      await deleteDoc(doc(db, "users", userId));
+      navigate("/");
+   }
 
    return (
       <div id='contact'>
@@ -67,21 +73,24 @@ export default function User() {
                         <Form action='edit'>
                            <button type='submit'>Edit</button>
                         </Form>
-                        <Form
+                        {/* <Form
                            method='post'
-                           action='destroy'
-                           onSubmit={(event) => {
+                           // action='destroy'
+                           onSubmit={async (event) => {
                               if (
                                  !confirm(
                                     "Please confirm you want to delete this record."
                                  )
                               ) {
                                  event.preventDefault();
+                                 await deleteDoc(doc(db, "users", userId));
                               }
                            }}
-                        >
-                           <button type='submit'>Delete</button>
-                        </Form>
+                        > */}
+                        <button type='submit' onClick={handleDelete}>
+                           Delete
+                        </button>
+                        {/* </Form> */}
                      </div>
                   </div>
                </div>
