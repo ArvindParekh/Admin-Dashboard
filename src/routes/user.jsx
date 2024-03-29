@@ -4,6 +4,8 @@ import { deleteDoc, doc, getDoc } from "firebase/firestore/lite";
 import { db } from "../services/firebase";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import XIcon from "@mui/icons-material/X";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 export default function User() {
    const [contacts, setContacts] = useState([]);
@@ -56,6 +58,7 @@ export default function User() {
 
                      {contact.twitter && (
                         <p className='mb-2'>
+                           <XIcon />
                            <a
                               target='_blank'
                               href={`https://twitter.com/${contact.twitter}`}
@@ -68,6 +71,7 @@ export default function User() {
 
                      {contact.linkedin && (
                         <p className='mb-2'>
+                        <LinkedInIcon />
                            <a
                               target='_blank'
                               href={`https://linkedin.com/in/${contact.linkedin}`}
