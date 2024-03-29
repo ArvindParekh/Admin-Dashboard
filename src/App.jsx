@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom";
 import { Form } from "react-router-dom";
 
-import { collection, getDocs, addDoc } from "firebase/firestore/lite";
+import {
+   collection,
+   getDocs,
+   addDoc,
+   deleteDoc,
+   doc,
+} from "firebase/firestore/lite";
 import { db } from "./services/firebase";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -51,6 +57,20 @@ function App() {
       getUsers();
    }, []);
 
+   useEffect(() => {
+      console.log("Users have changed!");
+   }, [users]);
+
+   async function handleDelete(event) {
+      if (!confirm("Please confirm you want to delete this record.")) {
+         event.preventDefault();
+      }
+      const userId = event.target.getAttribute("data-user-id");
+      await deleteDoc(doc(db, "users", userId));
+
+      setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
+   }
+
    return (
       <main className='w-screen h-screen flex items-center justify-center'>
          <section className='w-[70vw] h-[70vh] border rounded-md shadow-sm flex flex-col items-center justify-evenly'>
@@ -85,7 +105,7 @@ function App() {
                                  {/* <Form action='edit'>
                                     <button type='submit'>Edit</button>
                                  </Form> */}
-                                 <Form
+                                 {/* <Form
                                     method='post'
                                     action='destroy'
                                     onSubmit={(event) => {
@@ -97,9 +117,15 @@ function App() {
                                           event.preventDefault();
                                        }
                                     }}
+                                 > */}
+                                 <button
+                                    type='submit'
+                                    onClick={handleDelete}
+                                    data-user-id={user.id}
                                  >
-                                    <button type='submit'>Delete</button>
-                                 </Form>
+                                    Delete
+                                 </button>
+                                 {/* </Form> */}
                               </div>
                            </div>
                         </div>
