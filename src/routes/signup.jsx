@@ -1,22 +1,25 @@
-import { addDoc, collection } from "firebase/firestore/lite";
-import { db } from "../services/firebase";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const SignUp = () => {
    const [name, setName] = useState();
    const [email, setEmail] = useState();
    const [pass, setPass] = useState();
 
+   const auth = getAuth();
    const navigate = useNavigate();
 
    async function handleCreateAdmin() {
-      await addDoc(collection(db, "admins"), {
-         name: name,
-         email: email,
-         password: pass,
-      });
-      navigate("/");
+      createUserWithEmailAndPassword(auth, email, pass)
+         .then((userCredentials) => {
+            const user = userCredentials.user;
+            console.log(user);
+         })
+         .catch((error) => {
+            console.log(error.code, error.message);
+         });
+        navigate("/");
    }
 
    return (
