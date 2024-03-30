@@ -59,7 +59,7 @@ export const NewUser = () => {
                linkedin: lk,
                description: desc,
             });
-            navigate("/");
+            navigate("/dashboard");
          } catch (e) {
             console.error("Error adding document: ", e);
          }

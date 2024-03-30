@@ -24,7 +24,7 @@ export default function User() {
 
    async function handleDelete() {
       await deleteDoc(doc(db, "users", userId));
-      navigate("/");
+      navigate("/dashboard");
    }
 
    return (
@@ -41,7 +41,7 @@ export default function User() {
                   <div className='flex items-center justify-center mb-6'>
                      <img
                         key={contact.avatar}
-                        src={contact.avatar || null}
+                        src="/person.png"
                         className='w-32 h-32 rounded-full'
                      />
                   </div>
