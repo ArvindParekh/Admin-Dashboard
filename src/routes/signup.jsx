@@ -14,7 +14,6 @@ const SignUp = () => {
       createUserWithEmailAndPassword(auth, email, pass)
          .then((userCredentials) => {
             const user = userCredentials.user;
-            console.log(user);
          })
          .catch((error) => {
             console.log(error.code, error.message);

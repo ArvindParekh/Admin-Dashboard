@@ -51,13 +51,13 @@ function App() {
          <section className='w-full max-w-7xl p-6 bg-white rounded-lg shadow-lg'>
             <div className='flex justify-between items-center mb-6'>
                <div className='flex items-center gap-3'>
-                  <div className='border bg-white focus-within:outline py-2 rounded-lg flex items-center shadow-lg'>
+                  {/* <div className='border bg-white focus-within:outline py-2 rounded-lg flex items-center shadow-lg'>
                      <SearchIcon className='text-gray-500' />
                      <input
                         className='border-none outline-none'
                         placeholder='Search'
                      ></input>
-                  </div>
+                  </div> */}
                   <Link
                      to='/add-user'
                      className='px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600'

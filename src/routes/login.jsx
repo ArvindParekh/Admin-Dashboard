@@ -14,7 +14,6 @@ const Login = () => {
     signInWithEmailAndPassword(auth, email, pass)
     .then((userCredentials)=>{
         const user = userCredentials.user;
-        console.log(user);
         navigate("/dashboard");
     })
     .catch((error)=>{

@@ -109,7 +109,7 @@ export default function User() {
             );
          })}
          <div className="mt-6">
-            <Link to="/" className=" text-blue-500 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            <Link to="/dashboard" className=" text-blue-500 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                Back
             </Link>
          </div>
