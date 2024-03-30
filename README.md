@@ -5,9 +5,7 @@ An admin-dashboard, with login/logout functionality, for admins to add users, mo
 ## Tech Stack
 
 - `React`
-- `Node.js`
-- `Express.js`
-- `MongoDb`
+- `Firebase`
 - `Tailwind`
 - `React-Router`
 - `Vite`
